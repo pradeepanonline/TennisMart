@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TennisMart - Wimbledon Edition</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <header class="wimbledon-header">
+    <h1>TennisMart <span>Wimbledon Edition</span></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/federer">Federer Collection</a>
+      <a href="/cart">Cart</a>
+    </nav>
+  </header>
+  <section class="categories">
+    <h2>Shop by Category</h2>
+    <div class="category-list">
+      <% categories.forEach(category => { %>
+        <% if (category.id === 'federer') { %>
+          <a class="category-card" href="/federer"><%= category.name %></a>
+        <% } else { %>
+          <a class="category-card" href="/category/<%= category.id %>"><%= category.name %></a>
+        <% } %>
+      <% }) %>
+    </div>
+  </section>
+  <section class="featured-products">
+    <h2>Featured Products</h2>
+    <div class="product-list">
+      <% products.forEach(product => { %>
+        <div class="product-card">
+          <img src="<%= product.image %>" alt="<%= product.name %>">
+          <h3><%= product.name %></h3>
+          <p>$<%= product.price %></p>
+          <form action="/cart/add" method="POST">
+            <input type="hidden" name="productId" value="<%= product.id %>">
+            <button type="submit">Add to Cart</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> TennisMart. Wimbledon Theme.</p>
+  </footer>
+</body>
+</html> 

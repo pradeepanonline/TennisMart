@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Federer Collection - TennisMart</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <style>
+    .federer-hero {
+      position: relative;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .federer-hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .federer-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+    .federer-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
+    }
+    .federer-hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
+    }
+    .product-card {
+      position: relative;
+    }
+    .product-description {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0.5rem 0;
+      min-height: 60px;
+    }
+  </style>
+</head>
+<body>
+  <header class="wimbledon-header">
+    <h1>TennisMart <span>Wimbledon Edition</span></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/cart">Cart</a>
+    </nav>
+  </header>
+
+  <section class="federer-hero">
+    <img src="/images/federer.jpg" alt="Roger Federer">
+    <h1>Roger Federer Collection</h1>
+    <p>Experience the gear that helped shape the career of one of tennis's greatest players. Each product in this collection has been personally used and endorsed by Roger Federer throughout his legendary career.</p>
+  </section>
+
+  <section class="featured-products">
+    <h2>Federer's Signature Gear</h2>
+    <div class="product-list">
+      <% products.forEach(product => { %>
+        <div class="product-card">
+          <img src="<%= product.image %>" alt="<%= product.name %>">
+          <h3><%= product.name %></h3>
+          <p class="product-description"><%= product.description %></p>
+          <p class="price">$<%= product.price %></p>
+          <form action="/cart/add" method="POST">
+            <input type="hidden" name="productId" value="<%= product.id %>">
+            <button type="submit">Add to Cart</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> TennisMart. Wimbledon Theme.</p>
+  </footer>
+</body>
+</html> 

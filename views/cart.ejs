@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - TennisMart</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <header class="wimbledon-header">
+    <h1>TennisMart <span>Wimbledon Edition</span></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/cart">Cart</a>
+    </nav>
+  </header>
+  <section class="featured-products">
+    <h2>Your Cart</h2>
+    <% if (cart.length === 0) { %>
+      <p>Your cart is empty.</p>
+    <% } else { %>
+      <div class="product-list">
+        <% cart.forEach(product => { %>
+          <div class="product-card">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+            <h3><%= product.name %></h3>
+            <p>$<%= product.price %></p>
+          </div>
+        <% }) %>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <h3>Total: $<%= cart.reduce((sum, p) => sum + p.price, 0) %></h3>
+        <a href="/checkout"><button style="margin-top:1rem;">Proceed to Checkout</button></a>
+      </div>
+    <% } %>
+  </section>
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> TennisMart. Wimbledon Theme.</p>
+  </footer>
+</body>
+</html> 

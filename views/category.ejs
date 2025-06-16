@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= category.name %> - TennisMart</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <header class="wimbledon-header">
+    <h1>TennisMart <span>Wimbledon Edition</span></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/cart">Cart</a>
+    </nav>
+  </header>
+  <section class="featured-products">
+    <h2><%= category.name %></h2>
+    <div class="product-list">
+      <% products.forEach(product => { %>
+        <div class="product-card">
+          <img src="<%= product.image %>" alt="<%= product.name %>">
+          <h3><%= product.name %></h3>
+          <p>$<%= product.price %></p>
+          <form action="/cart/add" method="POST">
+            <input type="hidden" name="productId" value="<%= product.id %>">
+            <button type="submit">Add to Cart</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> TennisMart. Wimbledon Theme.</p>
+  </footer>
+</body>
+</html> 
